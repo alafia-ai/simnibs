@@ -1,1 +1,1 @@
-static const char *petscconfigureoptions = "--CFLAGS=-fPIC --COPTFLAGS=-O2 --CXXOPTFLAGS=-O2 --with-cc=gcc --with-fc=0 --download-mpich --download-f2cblaslapack --download-hypre";
+static const char *petscconfigureoptions = "--prefix=/home/seb/packages/petsc/3.20.3 --force --with-mpi=false";

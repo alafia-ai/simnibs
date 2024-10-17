@@ -164,6 +164,7 @@ elif sys.platform == 'linux':
     cgal_compile_args = [
         '-Os', '-flto',
         '-frounding-math',
+	'-Wno-changes-meaning',
         '-std=gnu++14',
     ]
     cgal_mesh_macros += [('NOMINMAX', None)]
@@ -385,7 +386,7 @@ class build_ext_(build_ext):
             else:
                 build_lib = self.build_lib + "/"
 
-            install_lib(tbb_url, tbb_path, tbb_libs, build_lib)
+            #install_lib(tbb_url, tbb_path, tbb_libs, build_lib)
 
         # Compile
         build_ext.run(self)

@@ -1,13 +1,13 @@
 /* mpf2mpfr.h -- Compatibility include file with mpf.
 
-Copyright 1999, 2000, 2001, 2002, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
-Contributed by the Arenaire and Cacao projects, INRIA.
+Copyright 1999-2002, 2004-2023 Free Software Foundation, Inc.
+Contributed by the AriC and Caramba projects, INRIA.
 
 This file is part of the GNU MPFR Library.
 
 The GNU MPFR Library is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation; either version 2.1 of the License, or (at your
+the Free Software Foundation; either version 3 of the License, or (at your
 option) any later version.
 
 The GNU MPFR Library is distributed in the hope that it will be useful, but
@@ -16,12 +16,12 @@ or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
 License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with the GNU MPFR Library; see the file COPYING.LIB.  If not, write to
-the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-MA 02110-1301, USA. */
+along with the GNU MPFR Library; see the file COPYING.LESSER.  If not, see
+https://www.gnu.org/licenses/ or write to the Free Software Foundation, Inc.,
+51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA. */
 
 #ifndef __MPFR_FROM_MPF__
-#define __MPFR_FROM_MFF__
+#define __MPFR_FROM_MPF__
 
 /* types */
 #define mpf_t mpfr_t
@@ -33,11 +33,17 @@ MA 02110-1301, USA. */
 # define MPFR_DEFAULT_RND mpfr_get_default_rounding_mode ()
 #endif
 
-/* mpf_init initalizes at 0 */
+/* mpf_init initializes at 0 */
 #undef mpf_init
 #define mpf_init(x) mpfr_init_set_ui ((x), 0, MPFR_DEFAULT_RND)
 #undef mpf_init2
 #define mpf_init2(x,p) (mpfr_init2((x),(p)), mpfr_set_ui ((x), 0, MPFR_DEFAULT_RND))
+
+/* Warning! This assumes that all pointer types have the same representation. */
+#undef mpf_inits
+#define mpf_inits mpfr_inits
+#undef mpf_clears
+#define mpf_clears mpfr_clears
 
 /* functions which don't take as argument the rounding mode */
 #undef mpf_ceil
@@ -52,6 +58,11 @@ MA 02110-1301, USA. */
 #define mpf_cmp_ui mpfr_cmp_ui
 #undef mpf_cmp_d
 #define mpf_cmp_d mpfr_cmp_d
+/* mpf_cmp_z appeared in GMP 6.1.0 */
+#if __GNU_MP_VERSION > 6 || (__GNU_MP_VERSION == 6 && __GNU_MP_VERSION_MINOR >= 1)
+#undef mpf_cmp_z
+#define mpf_cmp_z mpfr_cmp_z
+#endif
 #undef mpf_eq
 #define mpf_eq mpfr_eq
 #undef mpf_floor
@@ -93,15 +104,15 @@ MA 02110-1301, USA. */
 #undef mpf_div_2exp
 #define mpf_div_2exp(x,y,z) mpfr_div_2exp(x,y,z,MPFR_DEFAULT_RND)
 #undef mpf_fits_slong_p
-#define mpf_fits_slong_p(x) mpfr_fits_ulong_p(x,MPFR_DEFAULT_RND)
+#define mpf_fits_slong_p(x) mpfr_fits_slong_p(x,MPFR_DEFAULT_RND)
 #undef mpf_fits_ulong_p
 #define mpf_fits_ulong_p(x) mpfr_fits_ulong_p(x,MPFR_DEFAULT_RND)
 #undef mpf_fits_sint_p
-#define mpf_fits_sint_p(x) mpfr_fits_uint_p(x,MPFR_DEFAULT_RND)
+#define mpf_fits_sint_p(x) mpfr_fits_sint_p(x,MPFR_DEFAULT_RND)
 #undef mpf_fits_uint_p
 #define mpf_fits_uint_p(x) mpfr_fits_uint_p(x,MPFR_DEFAULT_RND)
 #undef mpf_fits_sshort_p
-#define mpf_fits_sshort_p(x) mpfr_fits_ushort_p(x,MPFR_DEFAULT_RND)
+#define mpf_fits_sshort_p(x) mpfr_fits_sshort_p(x,MPFR_DEFAULT_RND)
 #undef mpf_fits_ushort_p
 #define mpf_fits_ushort_p(x) mpfr_fits_ushort_p(x,MPFR_DEFAULT_RND)
 #undef mpf_get_str
@@ -113,7 +124,7 @@ MA 02110-1301, USA. */
 #undef mpf_get_ui
 #define mpf_get_ui(x) mpfr_get_ui(x,MPFR_DEFAULT_RND)
 #undef mpf_get_si
-#define mpf_get_si(x) mpfr_get_ui(x,MPFR_DEFAULT_RND)
+#define mpf_get_si(x) mpfr_get_si(x,MPFR_DEFAULT_RND)
 #undef mpf_inp_str
 #define mpf_inp_str(x,y,z) mpfr_inp_str(x,y,z,MPFR_DEFAULT_RND)
 #undef mpf_set_str
@@ -169,4 +180,9 @@ MA 02110-1301, USA. */
 #undef mpf_urandomb
 #define mpf_urandomb(x,y,n) mpfr_urandomb(x,y)
 
-#endif
+#undef mpz_set_f
+#define mpz_set_f(z,f) mpfr_get_z(z,f,MPFR_DEFAULT_RND)
+#undef mpq_set_f
+#define mpq_set_f(q,f) mpfr_get_q(q,f)
+
+#endif /* __MPFR_FROM_MPF__ */

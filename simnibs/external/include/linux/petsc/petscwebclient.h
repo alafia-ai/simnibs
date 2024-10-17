@@ -1,11 +1,12 @@
 /*
   This is the include file for source code that accesses HTTPS
 */
-#if !defined(__PETSCWEBCLIENT_H)
-#define __PETSCWEBCLIENT_H
+#pragma once
 
 /*  complex number I conflicts with SSL include files */
-#define PETSC_SKIP_COMPLEX
+#if !defined(PETSC_SKIP_COMPLEX)
+  #define PETSC_SKIP_COMPLEX
+#endif
 #include <petscsys.h>
 
 #include <errno.h>
@@ -24,8 +25,7 @@
 
 PETSC_EXTERN PetscErrorCode PetscSSLInitializeContext(SSL_CTX **);
 PETSC_EXTERN PetscErrorCode PetscSSLDestroyContext(SSL_CTX *);
-PETSC_EXTERN PetscErrorCode PetscHTTPSRequest(const char[],const char[],const char[],const char[],const char[],SSL*,char[],size_t);
-PETSC_EXTERN PetscErrorCode PetscHTTPSConnect(const char[],int,SSL_CTX *,int *,SSL **);
+PETSC_EXTERN PetscErrorCode PetscHTTPSRequest(const char[], const char[], const char[], const char[], const char[], SSL *, char[], size_t);
+PETSC_EXTERN PetscErrorCode PetscHTTPSConnect(const char[], int, SSL_CTX *, int *, SSL **);
 
-PETSC_EXTERN PetscErrorCode PetscHTTPRequest(const char[],const char[],const char[],const char[],const char[],int,char[],size_t);
-#endif
+PETSC_EXTERN PetscErrorCode PetscHTTPRequest(const char[], const char[], const char[], const char[], const char[], int, char[], size_t);

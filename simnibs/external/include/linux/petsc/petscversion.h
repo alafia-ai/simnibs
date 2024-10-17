@@ -1,20 +1,20 @@
-#if !defined(__PETSCVERSION_H)
-#define __PETSCVERSION_H
+#ifndef PETSCVERSION_H
+#define PETSCVERSION_H
+#include <petscconf.h>
 
 #define PETSC_VERSION_RELEASE    1
 #define PETSC_VERSION_MAJOR      3
-#define PETSC_VERSION_MINOR      9
+#define PETSC_VERSION_MINOR      20
 #define PETSC_VERSION_SUBMINOR   3
-#define PETSC_VERSION_PATCH      0
-#define PETSC_RELEASE_DATE       "Apr, 7, 2018"
-#define PETSC_VERSION_DATE       "Jul, 02, 2018"
+#define PETSC_RELEASE_DATE       "Sep 28, 2023"
+#define PETSC_VERSION_DATE       "unknown"
 
-#if !defined (PETSC_VERSION_GIT)
-#define PETSC_VERSION_GIT        "v3.9.3"
+#if !defined(PETSC_VERSION_GIT)
+#define PETSC_VERSION_GIT        "unknown"
 #endif
 
 #if !defined(PETSC_VERSION_DATE_GIT)
-#define PETSC_VERSION_DATE_GIT   "2018-07-02 10:58:05 -0500"
+#define PETSC_VERSION_DATE_GIT   "unknown"
 #endif
 
 #define PETSC_VERSION_EQ(MAJOR,MINOR,SUBMINOR) \
@@ -34,7 +34,7 @@
        (PETSC_VERSION_SUBMINOR < (SUBMINOR)))))))
 
 #define PETSC_VERSION_LE(MAJOR,MINOR,SUBMINOR) \
-  (PETSC_VERSION_LT(MAJOR,MINOR,SUBMINOR) || \
+  (PETSC_VERSION_LT(MAJOR,MINOR,SUBMINOR) ||   \
    PETSC_VERSION_EQ(MAJOR,MINOR,SUBMINOR))
 
 #define PETSC_VERSION_GT(MAJOR,MINOR,SUBMINOR) \

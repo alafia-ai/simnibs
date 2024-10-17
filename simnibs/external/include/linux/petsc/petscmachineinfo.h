@@ -1,17 +1,19 @@
 static const char *petscmachineinfo = "\n"
 "-----------------------------------------\n"
-"Libraries compiled on 2018-09-12 07:53:13 on dtu-5cg71662msv.win.dtu.dk \n"
-"Machine characteristics: Linux-2.6.32-696.30.1.el6.x86_64-x86_64-with-centos-6.9-Final\n"
-"Using PETSc directory: /home/simnibs/petsc-3.9.3\n"
-"Using PETSc arch: simnibs_petsc_arch\n"
+"Libraries compiled on 2024-07-18 12:51:25 on D2000 \n"
+"Machine characteristics: Linux-6.9.8-arm64-aarch64-with-glibc2.38\n"
+"Using PETSc directory: /home/seb/packages/petsc/3.20.3\n"
+"Using PETSc arch: \n"
 "-----------------------------------------\n";
 static const char *petsccompilerinfo = "\n"
-"Using C compiler: /home/simnibs/petsc-3.9.3/simnibs_petsc_arch/bin/mpicc -fPIC   -O2  \n"
+"Using C compiler: gcc  -fPIC -Wall -Wwrite-strings -Wno-unknown-pragmas -Wno-lto-type-mismatch -Wno-stringop-overflow -fstack-protector -fvisibility=hidden -g3 -O0  \n"
+"Using Fortran compiler: gfortran  -fPIC -Wall -ffree-line-length-none -ffree-line-length-0 -Wno-lto-type-mismatch -Wno-unused-dummy-argument -g -O0    \n"
 "-----------------------------------------\n";
 static const char *petsccompilerflagsinfo = "\n"
-"Using include paths: -I/home/simnibs/petsc-3.9.3/include -I/home/simnibs/petsc-3.9.3/simnibs_petsc_arch/include\n"
+"Using include paths: -I/home/seb/packages/petsc/3.20.3/include\n"
 "-----------------------------------------\n";
 static const char *petsclinkerinfo = "\n"
-"Using C linker: /home/simnibs/petsc-3.9.3/simnibs_petsc_arch/bin/mpicc\n"
-"Using libraries: -Wl,-rpath,/home/simnibs/petsc-3.9.3/simnibs_petsc_arch/lib -L/home/simnibs/petsc-3.9.3/simnibs_petsc_arch/lib -lpetsc -Wl,-rpath,/home/simnibs/petsc-3.9.3/simnibs_petsc_arch/lib -L/home/simnibs/petsc-3.9.3/simnibs_petsc_arch/lib -lHYPRE -lf2clapack -lf2cblas -lstdc++ -ldl\n"
+"Using C linker: gcc\n"
+"Using Fortran linker: gfortran\n"
+"Using libraries: -Wl,-rpath,/home/seb/packages/petsc/3.20.3/lib -L/home/seb/packages/petsc/3.20.3/lib -lpetsc -llapack -lblas -lm -lX11 -lgfortran -lstdc++\n"
 "-----------------------------------------\n";
